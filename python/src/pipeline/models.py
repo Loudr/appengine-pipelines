@@ -145,7 +145,7 @@ class _PipelineRecord(db.Model):
   @property
   def root_pipeline_key(self):
     """Returns root pipeline key."""
-    return self.root_pipeline.get_value_for_datastore(self)
+    return self.__class__.root_pipeline.get_value_for_datastore(self)
 
 class _LowMemoryPipelineRecord(object):
   """Substitute for _PipelineRecord that takes up less space.
