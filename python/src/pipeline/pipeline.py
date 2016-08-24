@@ -2604,8 +2604,6 @@ class _PipelineContext(object):
             params=dict(root_pipeline_key=root_pipeline_key))
         task.add(queue_name=self.queue_name, transactional=True)
       else:
-        print "pipeline_record.params"
-        print pipeline_record.params
         task = taskqueue.Task(
             url=self.pipeline_handler_path,
             eta=pipeline_record.next_retry_time,
