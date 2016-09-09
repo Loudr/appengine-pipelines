@@ -349,10 +349,11 @@ class PipelineFuture(object):
       all_slots = db.get(slot_key_dict.keys())
       for slot, slot_record in zip(slot_key_dict.itervalues(), all_slots):
         if slot_record is None:
-          raise UnexpectedPipelineError(
+          logging.warn(
               'Inherited output named "%s" for pipeline class "%s" is '
-              'missing its Slot in the datastore: "%s"' %
-              (slot.name, pipeline_name, slot.key))
+              'missing its Slot in the datastore: "%s"',
+              slot.name, pipeline_name, slot.key)
+          continue
         slot = slot_key_dict[slot_record.key()]
         slot._set_value(slot_record)
 
